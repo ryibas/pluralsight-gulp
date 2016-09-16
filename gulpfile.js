@@ -9,7 +9,7 @@ var $ = require('gulp-load-plugins')({lazy:true}); // TODO - lazy loads any need
 
 gulp.task('vet', function () {
     log('Analyzing source..');
-    return gulp
+    	return gulp
         .src(config.alljs)
         .pipe($.if(args.verbose, $.print()))
         .pipe($.jscs())
@@ -21,9 +21,9 @@ gulp.task('vet', function () {
 // Makes clean-styles a dependency
 //gulp.task('styles', ['clean-styles'], function () {
 gulp.task('styles', function () {
-   log('Compiling LESS --> CSS');
+   	 log('Compiling LESS --> CSS');
 
-    return gulp
+    	return gulp
         .src(config.less)
         .pipe($.if(args.verbose, $.print()))
         .pipe($.plumber()) // graceful way to print out relevant compilation error information
@@ -33,39 +33,39 @@ gulp.task('styles', function () {
 });
 
 gulp.task('clean-styles', function(done) {
-    var files = config.outputDirectory + '**/*.css';
-    clean(files, done);
+    	var files = config.outputDirectory + '**/*.css';
+    	clean(files, done);
 });
 
 gulp.task('less-watcher', function() {
-   gulp.watch([config.less], ['styles']);
+   	 gulp.watch([config.less], ['styles']);
 });
 
 ///////////////////////////////////
 
 // 'done' - Callback function to call when done
 function clean(path, done) {
-    log('Cleaning: ' + $.util.colors.blue(path));
-    del(path, done);
+    	log('Cleaning: ' + $.util.colors.blue(path));
+    	del(path, done);
 }
 
 function errorLogger(error) {
-    log('*** Start of Error ***');
-    log(error);
-    log('*** End of Error ***');
-    this.emit('end');
+    	log('*** Start of Error ***');
+    	log(error);
+    	log('*** End of Error ***');
+    	this.emit('end');
 }
 
 // TODO - figure out why this isn't logging anything
 function log(message) {
-    if (typeof(message) === 'object') {
-        for (var item in message) {
-            if (message.hasOwnProperty(item)) {
-                console.log($.util.colors.blue(message[item]));
+    	if (typeof(message) === 'object') {
+        	for (var item in message) {
+            	if (message.hasOwnProperty(item)) {
+                	console.log($.util.colors.blue(message[item]));
             }
         }
     }
-    else {
-        $.util.log($.util.colors.blue(message));
+    	else {
+        	$.util.log($.util.colors.blue(message));
     }
 }
